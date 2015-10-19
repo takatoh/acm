@@ -1,0 +1,23 @@
+#!/usr/bin/env ruby
+# -*- encoding: utf-8 -*-
+
+require 'acm'
+require 'thor'
+require 'yaml'
+
+
+class MyCLI < Thor
+
+  DB_FILE = "#{ENV['HOMEDRIVE']}#{ENV['HOMEPATH']}/Documents/.accounts"
+
+  desc "list", "List accounts."
+  def list
+    db = YAML.load_file(DB_FILE)
+    db.map{|a| a['account'] }.each do |a|
+      puts a
+    end
+  end
+
+end   # of class MyCLI
+
+MyCLI.start(ARGV)
