@@ -10,7 +10,7 @@ class MyCLI < Thor
 
   DB_FILE = "#{ENV['HOMEDRIVE']}#{ENV['HOMEPATH']}/Documents/.accounts"
 
-  desc "list", "List accounts."
+  desc "list", "List accounts"
   def list
     db = YAML.load_file(DB_FILE)
     db.map{|a| a['account'] }.each do |a|
@@ -18,6 +18,39 @@ class MyCLI < Thor
     end
   end
 
+  desc "show ACCOUNT", "Show details of ACCOUNT"
+  def show(target)
+    db = YAML.load_file(DB_FILE)
+    account = lookup(target, db)
+    if account
+      puts "Account: #{account['account']}"
+      account['details'].each do |key, val|
+        puts "  #{key}: #{val}"
+      end
+    else
+      puts "No such account: #{target}"
+    end
+  end
+
+  desc "version", "Show version and exit"
+  def version
+    puts "v#{Acm::VERSION}"
+  end
+
+  private
+
+  def lookup(target, db)
+    ac = nil
+    db.each do |a|
+      if a['account'] == target
+        ac = a
+        break
+      end
+    end
+    ac
+  end
+
 end   # of class MyCLI
+
 
 MyCLI.start(ARGV)
