@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
 
   spec.summary       = %q{A simple account manager for Windows (NOT SECURE ;p).}
   spec.description   = %q{}
-  spec.homepage      = ""
+  spec.homepage      = "https://github.com/takatoh/acm"
 
   # Prevent pushing this gem to RubyGems.org by setting 'allowed_push_host', or
   # delete this section to allow pushing this gem to any host.
