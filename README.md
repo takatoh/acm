@@ -7,13 +7,35 @@ A simple account manager for Windows. This is NOT secure, excuse me ;p.
 
 Install it yourself as:
 
-    $ gem install acm
+    > gem install acm
 
 ## Usage
 
-Show help message:
+At first, init database:
 
-    $ acm help
+    > acm init
+
+The database file save as &HOMEDRIVE%%HOMEPATH%/Documents/.account, in YAML.
+Add account:
+
+    > acm add takatoh.m@gmail.com
+    (acm) Key? email
+    (acm) Value? takatoh.m@gmail.com
+    (acm) Key? password
+    (acm) Value? xxxxxxxx
+    (acm) Key?                         # Enter to exit.
+
+Then added account to database. List account(s):
+
+    > acm list
+    takatoh.m@gmail.com
+
+Show details:
+
+    > acm show takatoh.m@gmail.com
+    Account: takatoh.m@gmail.com
+      email: takatoh.m@gmail.com
+      password: xxxxxxxx
 
 ## Development
 
