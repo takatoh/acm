@@ -1,6 +1,6 @@
-# Acm
+# acm
 
-A simple account manager for Windows. This is NOT secure, excuse ;p.
+A simple account manager for Windows. This is NOT secure, excuse me ;p.
 
 
 ## Installation
