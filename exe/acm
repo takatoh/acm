@@ -20,6 +20,31 @@ class MyCLI < Thor
     end
   end
 
+  desc "add ACCOUNT", "Add ACCOUNT"
+  def add(account)
+    db = YAML.load_file(DB_FILE)
+    ac = lookup(account, db)
+    if ac
+      puts "Account #{account} is already exist."
+      exit 0
+    end
+    details = {}
+    ac = {
+      "account" => account,
+      "details" => details
+    }
+    while true
+      print "(acm) Key? "
+      key = STDIN.gets.chomp.strip
+      break if key.empty?
+      print "(acm) Value? "
+      value = STDIN.gets.chomp.strip
+      details[key] = value
+    end
+    db << ac
+    File.open(DB_FILE, "w"){|f| f.puts db.to_yaml }
+  end
+
   desc "list", "List accounts"
   def list
     db = YAML.load_file(DB_FILE)
