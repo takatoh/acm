@@ -21,7 +21,7 @@ class MyCLI < Thor
   desc "show ACCOUNT", "Show details of ACCOUNT"
   def show(target)
     db = YAML.load_file(DB_FILE)
-    account = lookup(target, db)
+    account = lookup(target.encode("utf-8"), db)
     if account
       puts "Account: #{account['account']}"
       account['details'].each do |key, val|
