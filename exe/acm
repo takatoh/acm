@@ -10,6 +10,16 @@ class MyCLI < Thor
 
   DB_FILE = "#{ENV['HOMEDRIVE']}#{ENV['HOMEPATH']}/Documents/.accounts"
 
+  desc "init", "Init database"
+  def init
+    if File.exist?(DB_FILE)
+      puts "Database file is already exist."
+    else
+      db = []
+      File.open(DB_FILE, "w"){|f| f.puts db.to_yaml }
+    end
+  end
+
   desc "list", "List accounts"
   def list
     db = YAML.load_file(DB_FILE)
