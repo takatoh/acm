@@ -16,6 +16,7 @@ At first, init database:
     > acm init
 
 The database file save as %HOMEDRIVE%%HOMEPATH%/Documents/.accounts, in YAML.
+
 Add account:
 
     > acm add takatoh.m@gmail.com
@@ -25,7 +26,9 @@ Add account:
     (acm) Value? xxxxxxxx
     (acm) Key?                         # Enter to exit.
 
-Then added account to database. List account(s):
+Then added account to database.
+
+List account(s):
 
     > acm list
     takatoh.m@gmail.com
