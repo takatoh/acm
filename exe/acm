@@ -48,9 +48,7 @@ class MyCLI < Thor
   desc "list", "List accounts"
   def list
     db = YAML.load_file(DB_FILE)
-    db.map{|a| a['account'] }.each do |a|
-      puts a
-    end
+    db.each{|a| puts a['account'] }
   end
 
   desc "show ACCOUNT", "Show details of ACCOUNT"
@@ -72,17 +70,11 @@ class MyCLI < Thor
     puts "v#{Acm::VERSION}"
   end
 
+
   private
 
   def lookup(target, db)
-    ac = nil
-    db.each do |a|
-      if a['account'] == target
-        ac = a
-        break
-      end
-    end
-    ac
+    db.find{|a| a['account'] == target }
   end
 
 end   # of class MyCLI
