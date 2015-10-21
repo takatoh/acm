@@ -63,7 +63,7 @@ And remove account:
     Account: takatoh.m@gmail.com
       email: takatoh.m@gmail.com
 
-      Are you sure?(y/n) y             # Enter 'y' to remove.
+    Are you sure?(y/n) y               # Enter 'y' to remove.
 
     > acm show takatoh.m@gmail.com
     No such account: takatoh.m@gmail.com
