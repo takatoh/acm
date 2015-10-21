@@ -77,6 +77,18 @@ class MyCLI < Thor
     end
   end
 
+  desc "remove_key ACCOUNT KEY", "Remove KEY and value in ACCOUNT"
+  def remove_key(target, key)
+    db = YAML.load_file(DB_FILE)
+    account = lookup(target.encode("utf-8"), db)
+    if account
+      account['details'].delete(key)
+      File.open(DB_FILE, "w"){|f| f.puts db.to_yaml }
+    else
+      puts "No such account: #{target}"
+    end
+  end
+
   desc "version", "Show version and exit"
   def version
     puts "v#{Acm::VERSION}"
