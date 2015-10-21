@@ -88,6 +88,25 @@ class MyCLI < Thor
     end
   end
 
+  desc "remove_account ACCOUNT", "Remove ACCOUNT"
+  def remove_account(target)
+    db = load_db
+    account = lookup(target.encode("utf-8"), db)
+    if account
+      puts "Account: #{target}"
+      account['details'].each do |k, v|
+        puts "  #{k}: #{v}"
+      end
+      print "\nAre you sure?(y/n) "
+      if STDIN.gets.chomp.downcase == "y"
+        db.reject!{|a| a['account'] == target.encode("utf-8") }
+        save_db(db)
+      end
+    else
+      puts "No such account: #{target}"
+    end
+  end
+
   desc "version", "Show version and exit"
   def version
     puts "v#{Acm::VERSION}"
