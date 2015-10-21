@@ -65,6 +65,18 @@ class MyCLI < Thor
     end
   end
 
+  desc "update ACCOUNT KEY VALUE", "Update value of KEY in ACCOUNT"
+  def update(target, key, value)
+    db = YAML.load_file(DB_FILE)
+    account = lookup(target.encode("utf-8"), db)
+    if account
+      account['details'][key] = value
+      File.open(DB_FILE, "w"){|f| f.puts db.to_yaml }
+    else
+      puts "No such account: #{target}"
+    end
+  end
+
   desc "version", "Show version and exit"
   def version
     puts "v#{Acm::VERSION}"
