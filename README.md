@@ -47,7 +47,7 @@ Update value of key:
     > acm show takatoh.m@gmail.com
     Account: takatoh.m@gmail.com
       email: takatoh.m@gmail.com
-      password: xxxxxxxx
+      password: yyyyyyyy
 
 Remove key and value:
 
