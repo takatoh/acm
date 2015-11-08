@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ["takatoh"]
   spec.email         = ["takatoh.m@gmail.com"]
 
-  spec.summary       = %q{A simple account manager for Windows (NOT SECURE ;p).}
+  spec.summary       = %q{A simple account manager (NOT SECURE ;p).}
   spec.description   = %q{}
   spec.homepage      = "https://github.com/takatoh/acm"
   spec.license       = "MIT"
