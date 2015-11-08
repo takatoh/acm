@@ -1,6 +1,6 @@
 # acm
 
-A simple account manager for Windows. This is NOT secure, excuse me ;p.
+A simple account manager. This is NOT secure, excuse me ;p.
 
 
 ## Installation
@@ -15,7 +15,8 @@ At first, init database:
 
     > acm init
 
-The database file is saved as %HOMEDRIVE%%HOMEPATH%/Documents/.accounts, in YAML.
+The database file is saved as "ENV['ACMDB']" or "ENV['HOME']/.accounts", in YAML.
+Set location of database file to environment variable 'ACMDB', if you want.
 
 Add account:
 
