@@ -8,7 +8,7 @@ require 'yaml'
 
 class MyCLI < Thor
 
-  DB_FILE = "#{ENV['HOMEDRIVE']}#{ENV['HOMEPATH']}/Documents/.accounts"
+  DB_FILE = ENV['ACMDB'] or "#{ENV['HOME']}/.accounts"
 
   desc "init", "Init database"
   def init
