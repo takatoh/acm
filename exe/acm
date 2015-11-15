@@ -76,7 +76,7 @@ class MyCLI < Thor
     end
   end
 
-  desc "remove_key ACCOUNT KEY", "Remove KEY and value in ACCOUNT"
+  desc "remove-key ACCOUNT KEY", "Remove KEY and value in ACCOUNT"
   def remove_key(target, key)
     db = load_db
     account = lookup(target.encode("utf-8"), db)
@@ -88,7 +88,7 @@ class MyCLI < Thor
     end
   end
 
-  desc "remove_account ACCOUNT", "Remove ACCOUNT"
+  desc "remove-account ACCOUNT", "Remove ACCOUNT"
   def remove_account(target)
     db = load_db
     account = lookup(target.encode("utf-8"), db)
