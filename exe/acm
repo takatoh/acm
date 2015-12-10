@@ -47,7 +47,7 @@ class MyCLI < Thor
   desc "list", "List accounts"
   def list
     db = load_db
-    db.each{|a| puts a['account'] }
+    db.map{|a| a['account'] }.sort.each{|a| puts a }
   end
 
   desc "show ACCOUNT", "Show details of ACCOUNT"
