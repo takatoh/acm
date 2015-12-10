@@ -52,7 +52,7 @@ Update value of key:
 
 Remove key and value:
 
-    > acm remove_key takatoh.m@gmail.com password
+    > acm remove-key takatoh.m@gmail.com password
 
     > acm show takatoh.m@gmail.com
     Account: takatoh.m@gmail.com
@@ -60,7 +60,7 @@ Remove key and value:
 
 And remove account:
 
-    > acm remove_account takatoh.m@gmail.com
+    > acm remove-account takatoh.m@gmail.com
     Account: takatoh.m@gmail.com
       email: takatoh.m@gmail.com
 
