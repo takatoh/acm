@@ -58,6 +58,14 @@ Remove key and value:
     Account: takatoh.m@gmail.com
       email: takatoh.m@gmail.com
 
+Rename account:
+
+    > acm rename-account takatoh.m@gmail.com Gmail
+
+    > acm show Gmail
+    Account: Gmail
+      email: takatoh.m@gmail.com
+
 And remove account:
 
     > acm remove-account takatoh.m@gmail.com
