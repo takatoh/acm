@@ -107,6 +107,19 @@ class MyCLI < Thor
     end
   end
 
+  desc "rename-account OLD NEW", "Rename ACCOUNT"
+  def rename_account(old, new)
+    db = load_db
+    account = lookup(old.encode("utf-8"), db)
+    if account
+      puts "Account: #{old} -> #{new}"
+      account['account'] = new.encode("utf-8")
+      save_db(db)
+    else
+      puts "No such account: #{old}"
+    end
+  end
+
   desc "version", "Show version and exit"
   def version
     puts "v#{Acm::VERSION}"
