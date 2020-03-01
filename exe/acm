@@ -51,13 +51,14 @@ class MyCLI < Thor
   end
 
   desc "show ACCOUNT", "Show details of ACCOUNT"
+  option :pass, :type => :boolean
   def show(target)
     db = load_db
     account = lookup(target.encode("utf-8"), db)
     if account
       puts "Account: #{account['account']}"
       account['details'].each do |key, val|
-        if /pass/ =~ key
+        if /pass/ =~ key && !options[:pass]
           puts "  #{key}: ******"
         else
           puts "  #{key}: #{val}"
