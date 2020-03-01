@@ -57,7 +57,11 @@ class MyCLI < Thor
     if account
       puts "Account: #{account['account']}"
       account['details'].each do |key, val|
-        puts "  #{key}: #{val}"
+        if /pass/ =~ key
+          puts "  #{key}: ******"
+        else
+          puts "  #{key}: #{val}"
+        end
       end
     else
       puts "No such account: #{target}"
