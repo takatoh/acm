@@ -1,4 +1,4 @@
-Copyright (c) 2015 takatoh
+Copyright (c) 2015-2020 takatoh
 
 MIT License
 
