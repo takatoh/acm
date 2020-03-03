@@ -4,6 +4,7 @@
 require 'acm'
 require 'thor'
 require 'yaml'
+require 'clipboard'
 
 
 class MyCLI < Thor
@@ -52,6 +53,7 @@ class MyCLI < Thor
 
   desc "show ACCOUNT", "Show details of ACCOUNT"
   option :pass, :type => :boolean
+  option :clip, :type => :boolean
   def show(target)
     db = load_db
     account = lookup(target.encode("utf-8"), db)
@@ -63,6 +65,10 @@ class MyCLI < Thor
         else
           puts "  #{key}: #{val}"
         end
+      end
+      if options[:clip]
+        password_key = account['details'].keys.select{|k| /pass/ =~ k}.first
+        Clipboard.copy(account['details'][password_key])
       end
     else
       puts "No such account: #{target}"
