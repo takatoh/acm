@@ -52,8 +52,8 @@ class MyCLI < Thor
   end
 
   desc "show ACCOUNT", "Show details of ACCOUNT"
-  option :pass, :type => :boolean
-  option :clip, :type => :boolean
+  option :pass, :type => :boolean, :aliases => "-p", :desc => "Show password"
+  option :clip, :type => :boolean, :aliases => "-c", :desc => "Copy password to clipboard"
   def show(target)
     db = load_db
     account = lookup(target.encode("utf-8"), db)
