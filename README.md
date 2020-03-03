@@ -41,7 +41,8 @@ Show details:
       email: takatoh.m@gmail.com
       password: xxxxxxxx
 
-In default, value of password is masked. If you see password, give --pass option.
+In default, value of password is masked. If you see the password, give --pass option.
+Or --clip option copies the password to clipboard.
 
 Update value of key:
 
@@ -70,14 +71,14 @@ Rename account:
 
 And remove account:
 
-    > acm remove-account takatoh.m@gmail.com
-    Account: takatoh.m@gmail.com
+    > acm remove-account Gmail
+    Account: Gmail
       email: takatoh.m@gmail.com
 
     Are you sure?(y/n) y               # Enter 'y' to remove.
 
-    > acm show takatoh.m@gmail.com
-    No such account: takatoh.m@gmail.com
+    > acm show Gmail
+    No such account: Gmail
 
 
 ## License
