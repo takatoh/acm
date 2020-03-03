@@ -51,7 +51,7 @@ class MyCLI < Thor
     db.map{|a| a['account'] }.sort.each{|a| puts a }
   end
 
-  desc "show ACCOUNT", "Show details of ACCOUNT"
+  desc "show [options] ACCOUNT", "Show details of ACCOUNT"
   option :pass, :type => :boolean, :aliases => "-p", :desc => "Show password"
   option :clip, :type => :boolean, :aliases => "-c", :desc => "Copy password to clipboard"
   def show(target)
