@@ -51,6 +51,14 @@ class MyCLI < Thor
     db.map{|a| a['account'] }.sort.each{|a| puts a }
   end
 
+  desc "search PATTERN", "Search accounts by PATTERN"
+  def search(target)
+    db = load_db
+    pattern = /#{target.encode("utf-8")}/i
+    accounts = db.select{|a| pattern =~ a['account'].tr(" ", "") }
+    accounts.each{|a| puts a['account'] }
+  end
+
   desc "show [options] ACCOUNT", "Show details of ACCOUNT"
   option :pass, :type => :boolean, :aliases => "-p", :desc => "Show password"
   option :clip, :type => :boolean, :aliases => "-c", :desc => "Copy password to clipboard"
