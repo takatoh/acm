@@ -9,6 +9,10 @@ Install it yourself as:
 
     > gem install acm
 
+If you using Windows, pleas install ffi gem:
+
+    > gem install ffi
+
 ## Usage
 
 At first, init database:
@@ -34,12 +38,17 @@ List account(s):
     > acm list
     takatoh.m@gmail.com
 
+Search account(s):
+
+    > acm search gmail
+    takatoh.m@gmail.com
+
 Show details:
 
     > acm show takatoh.m@gmail.com
     Account: takatoh.m@gmail.com
       email: takatoh.m@gmail.com
-      password: xxxxxxxx
+      password: ******
 
 In default, value of password is masked. If you see the password, give --pass option.
 Or --clip option copies the password to clipboard.
@@ -48,7 +57,7 @@ Update value of key:
 
     > acm update takatoh.m@gmail.com password yyyyyyyy
 
-    > acm show takatoh.m@gmail.com
+    > acm show --pass takatoh.m@gmail.com
     Account: takatoh.m@gmail.com
       email: takatoh.m@gmail.com
       password: yyyyyyyy
