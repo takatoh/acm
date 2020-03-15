@@ -9,7 +9,7 @@ Install it yourself as:
 
     > gem install acm
 
-If you using Windows, pleas install ffi gem:
+If are you using Windows, please install ffi gem:
 
     > gem install ffi
 
