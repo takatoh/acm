@@ -56,7 +56,11 @@ class MyCLI < Thor
     db = load_db
     pattern = /#{target.encode("utf-8")}/i
     accounts = db.select{|a| pattern =~ a['account'].tr(" ", "") }
-    accounts.each{|a| puts a['account'] }
+    if accounts.empty?
+      puts "Not found: #{target}"
+    else
+      accounts.each{|a| puts a['account'] }
+    end
   end
 
   desc "show [options] ACCOUNT", "Show details of ACCOUNT"
