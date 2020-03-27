@@ -10,6 +10,7 @@ require 'clipboard'
 class MyCLI < Thor
 
   DB_FILE = ENV['ACMDB'] || "#{ENV['HOME']}/.accounts"
+  REFERENCE_KEY = "login-with"
 
   desc "init", "Init database"
   def init
@@ -86,14 +87,14 @@ class MyCLI < Thor
       puts "Account: #{account['account']}"
       print_details(account['details'], options[:pass])
       copy_password(account['details'], options[:clip])
-      if options[:track] && account['details']['login-with']
-        ref_account = lookup(account['details']['login-with'], db)
+      if options[:track] && account['details'][REFERENCE_KEY]
+        ref_account = lookup(account['details'][REFERENCE_KEY], db)
         if ref_account
           puts "\nReference: #{ref_account['account']}"
           print_details(ref_account['details'], options[:pass])
           copy_password(ref_account['details'], options[:clip])
         else
-          puts "\nReference not found: #{account['details']['login-with']}"
+          puts "\nReference not found: #{account['details'][REFERENCE_KEY]}"
         end
       end
     else
