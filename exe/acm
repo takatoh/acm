@@ -65,6 +65,7 @@ class MyCLI < Thor
   desc "show [options] ACCOUNT", "Show details of ACCOUNT"
   option :pass, :type => :boolean, :aliases => "-p", :desc => "Show password"
   option :clip, :type => :boolean, :aliases => "-c", :desc => "Copy password to clipboard"
+  option :track, :type => :boolean, :aliases => "-t", :desc => "Track referred account"
   def show(target)
     db = load_db
     account = lookup(target.encode("utf-8"), db)
@@ -80,6 +81,15 @@ class MyCLI < Thor
       if options[:clip]
         password_key = account['details'].keys.select{|k| /pass/ =~ k}.first
         Clipboard.copy(account['details'][password_key])
+      end
+      if options[:track] && account['details']['login-with']
+        ref_account = lookup(account['details']['login-with'], db)
+        if ref_account
+          puts "\nReference: #{ref_account['account']}"
+          ref_account['details'].each do |key, val|
+            puts "  #{key}: #{val}"
+          end
+        end
       end
     else
       puts "No such account: #{target}"
