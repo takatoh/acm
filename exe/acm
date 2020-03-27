@@ -71,13 +71,7 @@ class MyCLI < Thor
     account = lookup(target.encode("utf-8"), db)
     if account
       puts "Account: #{account['account']}"
-      account['details'].each do |key, val|
-        if /pass/ =~ key && !options[:pass]
-          puts "  #{key}: ******"
-        else
-          puts "  #{key}: #{val}"
-        end
-      end
+      print_details(account['details'], options[:pass])
       if options[:clip]
         password_key = account['details'].keys.select{|k| /pass/ =~ k}.first
         Clipboard.copy(account['details'][password_key])
@@ -86,9 +80,7 @@ class MyCLI < Thor
         ref_account = lookup(account['details']['login-with'], db)
         if ref_account
           puts "\nReference: #{ref_account['account']}"
-          ref_account['details'].each do |key, val|
-            puts "  #{key}: #{val}"
-          end
+          print_details(ref_account['details'], options[:pass])
         end
       end
     else
@@ -180,6 +172,16 @@ class MyCLI < Thor
   def search_accounts(target, db)
     pattern = /#{target.encode("utf-8")}/i
     db.select{|a| pattern =~ a['account'].tr(" ", "") }
+  end
+
+  def print_details(details, pass = false)
+    details.each do |key, val|
+      if /pass/ =~ key && !pass
+        puts "  #{key}: ******"
+      else
+        puts "  #{key}: #{val}"
+      end
+    end
   end
 
 end   # of class MyCLI
