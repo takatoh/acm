@@ -37,8 +37,21 @@ class MyCLI < Thor
       print "(acm) Key? "
       key = STDIN.gets.chomp.strip
       break if key.empty?
-      print "(acm) Value? "
-      value = STDIN.gets.chomp.strip
+      if key == "login-with"
+        while true
+          print "(acm) Value? "
+          value = STDIN.gets.chomp.strip
+          ref_account = lookup(value, db)
+          if ref_account
+            break
+          else
+            puts "#{value} not exist."
+          end
+        end
+      else
+        print "(acm) Value? "
+        value = STDIN.gets.chomp.strip
+      end
       details[key] = value
     end
     db << ac
