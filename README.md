@@ -90,6 +90,19 @@ And remove account:
     No such account: Gmail
 
 
+## Special key: login-with
+
+Special key 'login-with' is reference to other account.
+
+    > acm add SomeWebService
+    (acm) Key? login-with
+    (acm) Value? GitHub
+    (acm) Key?                         # Enter to exit.
+
+To track reference, use acm show command with --track option.
+
+    > acm show --track SomeWebService
+
 ## License
 
 MIT License
