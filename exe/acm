@@ -54,8 +54,7 @@ class MyCLI < Thor
   desc "search PATTERN", "Search accounts by PATTERN"
   def search(target)
     db = load_db
-    pattern = /#{target.encode("utf-8")}/i
-    accounts = db.select{|a| pattern =~ a['account'].tr(" ", "") }
+    accounts = search_accounts(target, db)
     if accounts.empty?
       puts "Not found: #{target}"
     else
@@ -166,6 +165,11 @@ class MyCLI < Thor
 
   def save_db(db)
     File.open(DB_FILE, "w"){|f| f.puts db.to_yaml }
+  end
+
+  def search_accounts(target, db)
+    pattern = /#{target.encode("utf-8")}/i
+    db.select{|a| pattern =~ a['account'].tr(" ", "") }
   end
 
 end   # of class MyCLI
