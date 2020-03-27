@@ -72,15 +72,13 @@ class MyCLI < Thor
     if account
       puts "Account: #{account['account']}"
       print_details(account['details'], options[:pass])
-      if options[:clip]
-        password_key = account['details'].keys.select{|k| /pass/ =~ k}.first
-        Clipboard.copy(account['details'][password_key])
-      end
+      copy_password(account['details'], options[:clip])
       if options[:track] && account['details']['login-with']
         ref_account = lookup(account['details']['login-with'], db)
         if ref_account
           puts "\nReference: #{ref_account['account']}"
           print_details(ref_account['details'], options[:pass])
+          copy_password(ref_account['details'], options[:clip])
         end
       end
     else
@@ -181,6 +179,13 @@ class MyCLI < Thor
       else
         puts "  #{key}: #{val}"
       end
+    end
+  end
+
+  def copy_password(details, clip = false)
+    if clip
+      password_key = details.keys.select{|k| /pass/ =~ k}.first
+      Clipboard.copy(details[password_key])
     end
   end
 
