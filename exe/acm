@@ -79,6 +79,8 @@ class MyCLI < Thor
           puts "\nReference: #{ref_account['account']}"
           print_details(ref_account['details'], options[:pass])
           copy_password(ref_account['details'], options[:clip])
+        else
+          puts "\nReference not found: #{account['details']['login-with']}"
         end
       end
     else
