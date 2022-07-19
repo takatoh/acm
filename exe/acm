@@ -18,7 +18,7 @@ class MyCLI < Thor
     if File.exist?(DB_FILE)
       puts "Database file is already exist."
     else
-      save_db([])
+      init_db
     end
   end
 
