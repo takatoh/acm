@@ -1,11 +1,11 @@
 #!/usr/bin/env ruby
 # -*- encoding: utf-8 -*-
 
-require 'acm'
-require 'thor'
-require 'yaml'
-require 'clipboard'
-require 'fileutils'
+require "acm"
+require "thor"
+require "yaml"
+require "clipboard"
+require "fileutils"
 
 
 class MyCLI < Thor
