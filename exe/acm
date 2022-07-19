@@ -5,6 +5,7 @@ require 'acm'
 require 'thor'
 require 'yaml'
 require 'clipboard'
+require 'fileutils'
 
 
 class MyCLI < Thor
@@ -165,6 +166,11 @@ class MyCLI < Thor
 
 
   private
+
+  def init_db
+    File.open(DB_FILE, "w"){|f| f.puts [].to_yaml }
+    FileUtils.chmod(0600, DB_FILE)
+  end
 
   def load_db
     begin
