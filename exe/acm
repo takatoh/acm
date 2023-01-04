@@ -159,6 +159,11 @@ class MyCLI < Thor
     end
   end
 
+  desc "env", "Display Environments"
+  def env
+    puts "Database file: #{DB_FILE}"
+  end
+
   desc "version", "Show version and exit"
   def version
     puts "v#{Acm::VERSION}"
