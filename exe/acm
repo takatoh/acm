@@ -63,7 +63,13 @@ class MyCLI < Thor
   desc "list", "List accounts"
   def list
     db = load_db
-    db.map{|a| a['account'] }.sort.each{|a| puts a }
+    db.sort_by{|a| a['account'] }.each do |a|
+      if a['alias_for']
+        puts "#{a['account']}  ->  #{a['alias_for']}"
+      else
+        puts a['account']
+      end
+    end
   end
 
   desc "search PATTERN", "Search accounts by PATTERN"
