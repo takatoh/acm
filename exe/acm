@@ -84,6 +84,9 @@ class MyCLI < Thor
   def show(target)
     db = load_db
     account = lookup(target.encode("utf-8"), db)
+    if account && account['alias_for']
+      account = lookup(account['alias_for'], db)
+    end
     if account
       puts "Account: #{account['account']}"
       print_details(account['details'], options[:pass])
