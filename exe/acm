@@ -148,6 +148,11 @@ class AcmCLI < Thor
     db = load_db
     account = lookup(target.encode("utf-8"), db)
     if account
+      if account['alias_for']
+        puts "INFO: '#{target}' is alias for '#{account['alias_for']}'."
+        puts "Please run 'acm remove-account #{account['alias_for']}' to remove."
+        exit(0)
+      end
       puts "Account: #{target}"
       account['details'].each do |k, v|
         puts "  #{k}: #{v}"
