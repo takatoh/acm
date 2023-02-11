@@ -224,12 +224,10 @@ class MyCLI < Thor
   end
 
   def load_db
-    begin
-      YAML.load_file(DB_FILE)
-    rescue
-      puts "Error: Not found database file."
-      exit(1)
-    end
+    YAML.load_file(DB_FILE)
+  rescue
+    puts "Error: Not found database file."
+    exit(1)
   end
 
   def lookup(target, db)
