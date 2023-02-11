@@ -193,7 +193,7 @@ class MyCLI < Thor
       db << al
       save_db(db)
     else
-      puts "No such account: #{from}"
+      puts "No such account: #{dest}"
     end
   end
 
