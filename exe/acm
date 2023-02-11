@@ -79,7 +79,13 @@ class MyCLI < Thor
     if accounts.empty?
       puts "Not found: #{target}"
     else
-      accounts.each{|a| puts a['account'] }
+      accounts.each do |a|
+        if a['alias_for']
+          puts "#{a['account']}  ->  #{a['alias_for']}"
+        else
+          puts a['account']
+        end
+      end
     end
   end
 
