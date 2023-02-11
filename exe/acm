@@ -164,6 +164,23 @@ class MyCLI < Thor
     puts "Database file: #{DB_FILE}"
   end
 
+  desc "alias ALIAS ACCOUNT", "Create an ALIAS for ACCOUNT"
+  def alias_account(from, dest)
+    db = load_db
+    ac = lookup(dest.encode("utf-8"), db)
+    if ac
+      puts "Create alias: #{from} for #{dest}"
+      al = {
+        "account" => from,
+        "alias_for" => ac['account']
+      }
+      db << al
+      save_db(db)
+    else
+      puts "No such account: #{from}"
+    end
+  end
+
   desc "version", "Show version and exit"
   def version
     puts "v#{Acm::VERSION}"
