@@ -20,7 +20,7 @@ At first, init database:
     > acm init
 
 The database file is saved as "ENV['ACMDB']" or "ENV['HOME']/.accounts", in YAML.
-Set location of database file to environment variable 'ACMDB', if you want.
+Set location of database file to environment variable 'ACMDB', if you need.
 
 Add account:
 
@@ -50,8 +50,8 @@ Show details:
       email: takatoh.m@gmail.com
       password: ******
 
-In default, value of password is masked. If you see the password, give --pass option.
-Or --clip option copies the password to clipboard.
+In default, value of `password` is masked. If you need to see the password, give `--pass` option.
+Or `--clip` option copies the password to clipboard.
 
 Update value of key:
 
@@ -70,12 +70,29 @@ Remove key and value:
     Account: takatoh.m@gmail.com
       email: takatoh.m@gmail.com
 
+Create alias for account:
+
+    > acm alias google takatoh.m@gmail.com
+    Create alias: google for takatoh.m@gmail.com
+
+    > acm show google
+    NOTE: 'google' is alias for 'takatoh.m@gmail.com'.
+    Account: takatoh.m@gmail.com
+      email: takatoh.m@gmail.com
+
 Rename account:
 
     > acm rename-account takatoh.m@gmail.com Gmail
 
     > acm show Gmail
     Account: Gmail
+      email: takatoh.m@gmail.com
+
+The alias tracks account name changes.
+
+    > acm show google
+    NOTE: 'google' is alias for 'Gmail'.
+    Account: Ggmail
       email: takatoh.m@gmail.com
 
 And remove account:
@@ -89,16 +106,21 @@ And remove account:
     > acm show Gmail
     No such account: Gmail
 
+The alias is also removed.
+
+    > acm show google
+    No such account: google
+
 ## Special key: login-with
 
-Special key 'login-with' is reference to other account.
+Special key `login-with` is reference to other account.
 
     > acm add SomeWebService
     (acm) Key? login-with
     (acm) Value? GitHub
     (acm) Key?                         # Enter to exit.
 
-To track reference, use acm show command with --track option.
+To track reference, use `acm show` command with `--track` option.
 
     > acm show --track SomeWebService
 
