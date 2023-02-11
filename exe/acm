@@ -98,6 +98,7 @@ class MyCLI < Thor
     account = lookup(target.encode("utf-8"), db)
     if account && account['alias_for']
       account = lookup(account['alias_for'], db)
+      puts "NOTE: '#{target}' is alias for '#{account['account']}'."
     end
     if account
       puts "Account: #{account['account']}"
