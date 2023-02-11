@@ -197,6 +197,19 @@ class MyCLI < Thor
     end
   end
 
+  desc "remove-alias ALIAS", "Remove ALIAS"
+  def remove_alias(target)
+    db = load_db
+    ac = lookup(target.encode("utf-8"), db)
+    if ac
+      puts "Remove alias: #{target}"
+      db.reject!{|a| a['account'] == target.encode("utf-8") }
+      save_db(db)
+    else
+      puts "No such alias: #{target}"
+    end
+  end
+
   desc "version", "Show version and exit"
   def version
     puts "v#{Acm::VERSION}"
