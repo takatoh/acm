@@ -152,9 +152,16 @@ class AcmCLI < Thor
       account['details'].each do |k, v|
         puts "  #{k}: #{v}"
       end
+      aliases = search_alias(target.encode("utf-8"), db)
+      if aliases.size > 0
+        puts "Aliases: " + aliases.map{|al| al['account'] }.join(", ")
+      end
       print "\nAre you sure?(y/n) "
       if STDIN.gets.chomp.downcase == "y"
-        db.reject!{|a| a['account'] == target.encode("utf-8") }
+        db.reject!{|ac| ac['account'] == target.encode("utf-8") }
+        aliases.each do |al|
+          db.reject!{|ac| ac['account'] == al['account'] }
+        end
         save_db(db)
       end
     else
