@@ -243,6 +243,10 @@ class AcmCLI < Thor
     db.select{|a| pattern =~ a['account'].tr(" ", "") }
   end
 
+  def search_alias(target, db)
+    db.select{|a| target == a['alias_for'] }
+  end
+
   def print_details(details, pass = false)
     details.each do |key, val|
       if /pass/ =~ key && !pass
