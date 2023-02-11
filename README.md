@@ -89,7 +89,6 @@ And remove account:
     > acm show Gmail
     No such account: Gmail
 
-
 ## Special key: login-with
 
 Special key 'login-with' is reference to other account.
