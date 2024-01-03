@@ -3,6 +3,7 @@ PATH
   specs:
     acm (0.8.1)
       clipboard
+      ffi
       thor
 
 GEM
@@ -20,7 +21,6 @@ PLATFORMS
 DEPENDENCIES
   acm!
   bundler (~> 2.4.10)
-  ffi
   rake (>= 13.0)
 
 BUNDLED WITH

@@ -31,4 +31,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rake", ">= 13.0"
   spec.add_runtime_dependency "thor"
   spec.add_runtime_dependency "clipboard"
+  spec.add_runtime_dependency "ffi"
 end
